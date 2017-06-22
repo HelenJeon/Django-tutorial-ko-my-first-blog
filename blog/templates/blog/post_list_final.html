@@ -1,9 +1,4 @@
 {% extends 'blog/base.html' %}
-
-{% comment %}
-여러줄 주석
-{% endcomment %}
-{# 한줄 주석 #}
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -11,6 +6,10 @@
 </head>
 
 <body>
+    주석
+{% comment %}
+주석
+{% endcomment %}
 {% block content %}
     {% for post in posts %}
         <div class="post">
