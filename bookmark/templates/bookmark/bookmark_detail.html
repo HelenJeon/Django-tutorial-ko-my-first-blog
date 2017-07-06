@@ -1,0 +1,23 @@
+{% comment %}
+{{ bookmark }}: Bookmark 테이블의 특정 레코드 하나
+                해당 객체를 프린트 하면, models.py의 해당 객체의 __str__() 메소드를 호출해서 그 결과를 출력
+{% endcomment %}
+{# 한줄 주석 사용 #}
+<html>
+   <head>
+       <title>Bookmark Detail</title>
+   </head>
+
+<body>
+
+    <div id="content">
+        <h3>{{ object.title }}</h3>
+        <ul>
+            <li>URL: <a href="{{ object.url }}">{{ object.url }}</a></li>
+        </ul>
+
+
+    </div>
+
+</body>
+</html>
