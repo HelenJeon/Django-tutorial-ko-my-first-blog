@@ -1,0 +1,12 @@
+<h2>Post Archives for {{ day|date:"N d, Y" }}</h2>
+
+<div>
+    <ul>
+        {% for post in object_list %}
+            <li>
+                {{ post.modify_date|date:"Y-m-d" }}
+                <a href="{{ post.get_absolute_url }}"><b>{{ post.title }}</b></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

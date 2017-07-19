@@ -40,11 +40,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_post(self):
-        return reverse('blog:post_detail', args=(self.sulg,))
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=(self.slug,))
 
     def get_previous_post(self):
         return self.get_previous_by_modify_date()
 
     def get_next_post(self):
-        return self.get_next_post_by_modify_date()
+        return self.get_next_by_modify_date()

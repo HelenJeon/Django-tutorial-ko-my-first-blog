@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{#% extends 'blog/base.html' %#}
 
 {% comment %}
 여러줄 주석 사용
@@ -17,7 +17,7 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <h1>{{ post.title }}</h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
