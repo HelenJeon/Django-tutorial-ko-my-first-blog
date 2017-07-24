@@ -1,24 +1,63 @@
-<h2>Blog List</h2>
+{% extends "base.html" %}
 
-{% for post in posts %}
-    <h3><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h3>
-    {{ post.modify_date|date:"N d, Y" }}
-    <p>{{ post.description }}</p>
-{% endfor %}
+{% block title %}Django{% endblock %}
 
-<br>
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/home.css" %}{% endblock %}
 
-<div>
-    <span>
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
-    {% endif %}
+{% block content %}
 
-    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
-    {% endif %}
-    </span>
+    <div class="container-fluid">
+	<div class="row">
+        
+        <div class="col-md-12">
+            <h3 class="h3-title">블로그 목록</h3>
+            
+			<div class="panel-group" id="panel-900325">
+                {% for post in posts %}
+                <div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" href="#panel-element-{{ post.id }}" data-toggle="collapse" data-parent="#panel-900325">
+                            {{ post.title }}
+                        </a>
+                        &nbsp;{{ post.modify_date|date:"N d, Y" }}
+                        &nbsp;<a class="btn btn-primary btn-sm" href="{{ post.get_absolute_url }}">더보기...</a>
+					</div>
+					<div class="panel-collapse collapse{% if forloop.first %} in {% endif %}" id="panel-element-{{ post.id }}">
+						<div class="panel-body">
+							{{ post.text }}
+						</div>
+					</div>
+                </div>
+                {% endfor %}
 
-</div>
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+                </li>
+                {% endif %}
+                {#% for pageNum in page_obj.paginator.num_pages %#}
+                <li>
+                    <a>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+                </li>
+                {#% endfor %#}
+                {% if page_obj.has_next %}
+                <li>    
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+
+            </div>
+        </div>
+
+	</div>
+	</div>
+    
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
