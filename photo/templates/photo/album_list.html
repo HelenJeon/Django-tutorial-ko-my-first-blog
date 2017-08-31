@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Django{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/home.css" %}{% endblock %}
+
+{% block content %}
+
+<div id="content">
+
+    {% for item in object_list %}
+        {{ item.name }}
+
+        {% for photo in item.photo_set.all|slice:":5" %}
+            <div>
+                
+                <img src="{{ photo.image.thumb_url }}" />
+                
+            </div>
+        {% endfor %}
+            <br><br>
+    {% endfor %}
+
+</div>
+{% endblock %}
