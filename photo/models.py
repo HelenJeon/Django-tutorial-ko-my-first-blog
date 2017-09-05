@@ -35,7 +35,7 @@ class Album(models.Model):
 class Photo(models.Model):
     album = models.ForeignKey(Album) # 5
     title = models.CharField(max_length=50)
-    image = ThumbnailImageField(upload_to='photo/%Y/%m')
+    image = ThumbnailImageField(upload_to='media/photo/%Y/%m')
     description = models.TextField('Photo Description', blank=True)
     upload_date = models.DateTimeField('Upload Date', auto_now_add=True)
 
